@@ -1,0 +1,79 @@
+<%- include ('./header') %>
+    <style>
+        #allbtn {
+            width: 100px;
+            height: 40px;
+            background-color: rgb(240, 162, 240);
+            color: white;
+            font-size: 18px;
+        }
+
+        #sub table {
+            width: 100%;
+        }
+
+        #sub * {
+
+            border: solid 1px skyblue;
+            letter-spacing: 5px;
+            line-height: 1.7;
+        }
+
+        #sub table tr th {
+            background-color: skyblue;
+
+        }
+    </style>
+<script>
+        window.onload = () => {
+            let btn = document.getElementById('allbtn');
+            btn.onclick = allInquiry;
+        }
+        /* var submit = document.querySelectorAll('button');
+         submit[0].onclick = search;
+ 
+        function search(event) {
+             console.log('called', event.target.id);
+             $.ajax({
+                 method: "GET",
+                 url: "/"
+             })
+         }*/
+        function allInquiry() {
+            window.location.href="/search/all";
+            /* console.log('called', event);
+             $.ajax({
+                 method: "GET",
+                 url: "/search/all",
+                 success: function (data) {
+                     let elem = document.createElement('li');
+                     elem.innerHTML = data;
+                     $('#sub').append(elem);
+                 }
+             });*/
+        }
+
+    </script>
+    <body>
+        <section>
+            <div id='contents'>
+                <br>
+                <button id="allbtn">모두조회</button>
+
+                <br>
+                <form action="/search">
+                    <label for="sGrade">학년검색</label>
+                    <input type="text" name="cGrade" id="sGrade" list="loclist">
+                    <datalist id="loclist">
+                        <option>1학년</option>
+                        <option>2학년</option>
+                        <option>3학년</option>
+                        <option>4학년</option> 
+                    </datalist>
+                    <label for="sSubject">교과목검색</label>
+                    <input type="text" name="cSub" id="sSubject">
+                    <label for="sCode">코드검색</label>
+                    <input type="text" name="cCode" id="sCode">
+                    <input type="submit" value="조회">
+                </form>
+    <div id='sub'>

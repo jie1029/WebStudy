@@ -1,0 +1,40 @@
+<%- include ('./includes/searchHeader') %>
+
+    <table>
+        <tr>
+            <th>학년</th>
+            <th>과목명</th>
+            <th>과목코드</th>
+            <th>교수명</th>
+            <th>시간</th>
+            <th>강의계획서</th>
+        </tr>
+        <% for (let i =0; i< grade.length; i++) { %> 
+            <tr>
+                <td><%= grade[i] %></td>
+                <td><%= name[i] %></td>
+                <td><%= code[i] %></td>
+                <td><%= professor[i] %></td>
+                <td><%= time[i] %></td>
+                <td><button onclick = "Go(id)" class="ary" <%= id[i] %> >조회</button></td>
+            </tr>
+            
+            <% } %>
+    </table>
+
+
+    </div>
+    </section>
+
+
+    </body>
+    <script>
+
+       function Go(id)
+       {
+        
+          window.open("/search/"+id, 'plan', 'top=100px, left=100px, height=500px, width=500px').self;
+       }
+    </script>
+
+    </html>

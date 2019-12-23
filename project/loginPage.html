@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>수강신청 로그인</title>
+   <script>
+       /* $(function () {
+            var hover1 = $('button');
+            hover1.hover(function () {
+                hover1.css('background-image', 'bono.PNG');
+            }, function () {
+                hover1.css('background-image', 'node');
+            });
+        });*/
+        function mover(){
+       let btn = document.getElementById("btn");
+       btn.style.backgroundImg = "bono.PNG";
+       
+    }
+        function myFunc() {
+            let time = new Date().toLocaleTimeString();//현재시간출력
+            document.getElementsByTagName('h2')[0].style.textAlign = "center";
+            document.getElementsByTagName('h2')[0].innerHTML = time;
+        }
+        var myWork = setInterval(myFunc, 1000);
+        
+    </script>
+    <style>
+        div#login {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 460px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 3px 3px 5px #000000;
+            border-radius: 6px;
+        }
+
+        p {
+            position: relative;
+            color: rgb(3, 3, 109);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+        }
+
+        lnput {
+            border: 4px skyblue solid;
+            background-color: rgb(8, 233, 233);
+            border-radius: 3px;
+        }
+
+        p button {
+            background-color: skyblue;
+            border-radius: 3px;
+            width: 199px;
+            height: 60px;
+            color: white;
+        }
+        p button:link {
+            background-color: skyblue;
+            border-radius: 3px;
+            width: 199px;
+            height: 60px;
+            color: white;
+        }
+        p button:visited {
+            background-color: skyblue;
+            border-radius: 3px;
+            width: 199px;
+            height: 60px;
+            color: white;
+        }
+
+        p button:hover {
+            background-color: rgb(48, 48, 194);
+            width: 199px;
+            height: 60px;
+
+        }
+      /*  p button:link {
+            background-color: skyblue;
+            border-radius: 3px;
+            width: 199px;
+            height: 60px;
+            color: white;
+        }
+
+        p button:visited {
+            background-color: skyblue;
+            border-radius: 3px;
+            width: 199px;
+            height: 60px;
+            color: white;
+        }
+
+        p button:hover {
+            background-image: url("bono.PNG");
+            width: 199px;
+            height: 60px;
+
+        }
+*/
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        body {
+            background-color: rgb(206, 233, 241);
+            overflow: auto;
+        }
+    </style>
+    <h1>KIT 수강신청 페이지</h1>
+</head>
+
+<body>
+    <div id="login">
+        <br>
+        <h2></h2>
+        <br>
+        <form name="student" action="/login" method="POST">
+            <p>
+                <label for="sId">
+                    <b>아이디</b>
+                </label>
+                <input type="text" name="stuId" id="sId">
+            </p>
+
+            <p>
+                <label for="sPassword">
+                    <b>비밀번호</b>
+                </label>
+                <input type="password" name="stuPassword" id="sPassword">
+            </p>
+            <br>
+            <p>
+                <button type="Submit" id="btn" onmouseover="mover()">
+                    login
+                </button>
+            </p>
+        </form>
+        <p>
+            <a target="_self" href="/join">회원가입 하실래요?</a>
+        </p>
+
+    </div>
+</body>
+
+</html>

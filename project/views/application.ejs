@@ -1,0 +1,180 @@
+<%- include ('./includes/header') %>
+    <style>
+        #codeDiv table {
+            width: 100%;
+        }
+
+        #codeDiv * {
+
+            border: solid 1px skyblue;
+            letter-spacing: 5px;
+            line-height: 1.7;
+        }
+
+        #appliDiv * {
+            border: solid 1px rgb(185, 86, 185);
+            letter-spacing: 5px;
+            line-height: 1.7;
+        }
+
+        #appliDiv table {
+            width: 100%;
+        }
+
+        #top {
+            margin-top: 30px;
+        }
+
+        #codeDiv table tr th {
+            background-color: skyblue;
+
+        }
+
+        #appliDiv table tr th {
+            background-color: rgb(240, 166, 240);
+
+        }
+
+        th#th {
+
+            width: 180px;
+        }
+
+        td#input {
+            border: black 1px solid;
+        }
+
+        input#i {
+            border: solid 1px white;
+            width: 99%;
+        }
+    </style>
+
+    <body>
+        <section>
+            <div id='contents'>
+                <div id="codeDiv">
+                    <br>
+                    <table>
+                        <tr>
+                            <th id="th">과목코드 기술</th>
+                            <th>학년</th>
+                            <th>교과목명</th>
+                            <th>교수명</th>
+                            <th>강의시간</th>
+                            <th>신청여부</th>
+                        </tr>
+                        <tr id="output">
+                            <td id="input">
+
+                                <input type="text" name="sCode" placeholder="검색은여기엔터키로" id="in" onkeypress="if(event.keyCode==13){goSearch(event);}">
+                            </td>
+                            <td class="t"></td>
+                            <td class="t"></td>
+                            <td class="t"></td>
+                            <td class="t"></td>
+                            <td>
+                                <button onclick="addition()">신청</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">주의할 점
+                                <br>겹치는 시간 신청 불가
+                                <br>제발</td>
+
+                        </tr>
+                    </table>
+                </div>
+                <h4 id="top">신 청 란</h4>
+                <div id="appliDiv">
+                    <table>
+                        <tbody id="add">
+                            <tr>
+                                <th>학년</th>
+                                <th>교과목명</th>
+                                <th>교수명</th>
+                                <th>수업시간</th>
+                                <th>삭제여부</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+        function goSearch(event) {
+            if (event.target.value) {
+
+                $.ajax({
+                    method: "POST",
+                    url: "/application",
+                    data: { value: event.target.value },
+                    success: function (data) {
+                        for (let i = 0; i < 4; i++) {
+                            let tds = document.getElementsByClassName('t');
+                            tds[i].innerText = data[i];
+                        }
+                    }
+                });
+            }
+
+        }
+        var trList = [];
+        var index = 0;
+        var times = [];
+
+        function addition(event) {
+            $.ajax({
+                method: "POST",
+                url: "/application/OK",
+                data: { times: times },
+                success: function (data) {
+                    if (data == 'error') {
+                        
+                            alert("시간 겹치는 과목 하지 말라구요!");
+                        
+                    }
+                    else {
+                        var tr = document.createElement('tr');
+                        for (let j = 0; j < 4; j++) {
+                            let elem = document.createElement('td');
+                            elem.innerHTML = data[j];
+                            tr.appendChild(elem);
+                        }
+                        times[index] = data[3];
+                        let btn = document.createElement('button');
+                        btn.onclick = Dle;
+                        btn.innerHTML = "삭제";
+                        btn.name = index;
+                        tr.appendChild(btn);
+                        $('#add').append(tr);
+                        trList[index] = tr;
+                        trList[index].id = index;
+                        index++;
+                        console.log(times);
+                    }
+                }
+            });
+        }
+        function Dle(event) {
+            //let remove = document.getElementsByTagName("tr#"+event.target.id);
+            console.log(event.target.name);
+           
+            console.log(document.getElementById(event.target.name));
+            console.log(document.getElementsByTagName('tbody'));
+            let r = document.getElementById('add');
+            r.removeChild(document.getElementById(event.target.name));
+            // let div = document.getElementById('add');
+            // div.removeChild(remove);
+            times.splice(event.target.name,1,0);
+         
+            console.log(times);
+        }
+
+    </script>
+
+    </html>

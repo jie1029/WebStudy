@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>회원 가입</title>
+    <script>
+       
+    </script>
+    <style>
+        div#join {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+
+            background-color: rgb(255, 255, 255);
+            box-shadow: 3px 3px 5px #000000;
+            border-radius: 6px;
+            padding: 35px 40px;
+            margin: 20px;
+        }
+
+        body {
+            padding: 100%;
+            background-color: rgb(206, 233, 241);
+            overflow: auto;
+        }
+
+        header {
+            position: relative;
+            /*margin: 30px 20px;*/
+            border: rgb(117, 117, 117) 1px solid;
+            text-indent: 40px;
+            overflow: auto;
+            width: 100%;
+            height: 100px;
+        }
+
+        label.inline {
+            display: block;
+            text-align: right;
+        }
+
+        label {
+            display: block;
+        }
+
+        .my_box {
+            padding: 2px 2px 2px 2px;
+            border: #888888 1px solid;
+        }
+       
+    </style>
+
+</head>
+
+<body>
+        
+    <div id="join">
+        <form action="/join/OK" method="POST">
+            <header>
+                <p>회원가입 절차</p>
+                <p>이 페이지는 상업적 용도로 사용하기 위해 만들어진 페이지가 아니며, 과제만 제출하면 장땡입니다.</p>
+                <p>개인정보 넘기는 건 무슨 정보 저장도 못하겠습니다 어떡하죠?</p>
+                <p>이거 한다고 다른 공부를 못하고 있습니다. 살려주세요.</p>
+                <p>다 읽으셨으면 동의합니다 체크 부탁드립니다.</p>
+                <p>체크한거 까지 판별해서 만들고 싶은데 너무 어려워요..</p>
+                <p>그냥 동의 체크해주세요..</p>
+            </header>
+            <label class="inline">동의하십니까?
+                <input type="checkbox" name="stuLang" value="check" id="checkBox">
+            </label>
+            <br>
+            <section>
+                <article>
+                    <br>
+                    <fieldset>
+                        <label for="sName">이름 입력</label>
+                        <input type="text" name="stuName" id="sName" class="my_box">
+                        <label for="sId">아이디 입력</label>
+                        <input type="text" name="stuId" id="sId" class="my_box">
+                        <label for="sPassword">비밀번호 입력</label>
+                        <input type="password" name="stuPassword" id="sPassword" class="my_box">
+                        <label for="sMail">이메일</label>
+                        <input type="email" name="stuMail" id="sMail" class="my_box">
+                    </fieldset>
+                    <button type="submit" id="sub"> 확인
+                    </button>
+                    <br>
+                </article>
+            </section>
+        </form>
+    </div>
+</body>
+
+</html>
